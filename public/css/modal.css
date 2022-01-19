@@ -458,7 +458,7 @@ input[data-error]::after {
   grid-column: span 8;
 }
 .hero-img img {
-  width: 100%;
+  width: 33.3em;
   height: 100%;
   display: block;
   padding: 0;
@@ -495,16 +495,18 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 40px;;
     white-space: normal;
   }
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+    margin-top: 17px;
+    font-size: 13px;
   }
   .hero-img img {
     border-radius: 10px;
     margin-top: 40px;
+    width: 13em;
   }
   .hero-section > .btn-signup {
     display: block;
