@@ -13,30 +13,6 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalClose = document.querySelectorAll(".close");
 
-// DOM Elements formulaire
-const validator = document.querySelector("#inscription");
-const errorMessage = document.querySelectorAll(".error");
-const errorPrenom = document.querySelector(".prenom");
-const errorNom = document.querySelector(".nom");
-const errorEmail = document.querySelector(".email");
-const errordateDeNaissance = document.querySelector(".dateDeNaissance");
-const errornombreDeTournois = document.querySelector(".nombreDeTournois");
-const errorTournoi = document.querySelector(".tournoi");
-const errorConditionG = document.querySelector(".conditionG");
-
-// Var Elements formulaire
-var erreur;
-var prenom = document.getElementById("first");
-var nom = document.getElementById("last");
-var email = document.getElementById("email");
-var anniversaire = document.getElementById("birthdate");
-var participation = document.getElementById("quantity");
-var condition = document.getElementById("checkbox1");
-
-
-
-
-
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -51,46 +27,76 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-// envoyer formulaire
-validator.addEventListener("submit", function(btn) {
-  // permet de ne pas rafraichir la page
-  btn.preventDefault();
-  
-// verification des champs
+
+// DOM Elements formulaire
+const form = document.querySelector('#form');
+const prenom = document.querySelector('#prenom');
+const nom = document.querySelector('#nom');
+const email = document.querySelector('#email');
+const birthdate = document.querySelector('#birthdate');
+const quantity = document.querySelector('#quantity');
+const locations = document.querySelector('#location');
+const conditionU = document.querySelector('#conditionU');
 
 
-if(!condition.value){
-  erreur = "Merci de validé les conditions générales";
-}
 
-if(!participation.value){
-  erreur = "Veillez renseigner votre nombre de participation";
-}
-if(!anniversaire.value){
-  erreur = "Veillez renseigner votre date de naissance";
-}
-if(!email.value){
-  erreur = "Veillez renseigner un email";
-}
-if(!nom.value){
-  erreur = "Veillez renseigner un nom";
-}
-if(!prenom.value){
-  erreur = "Veillez renseigner un prénom";
-}
+form.addEventListener('submit', e => {
+  e.preventDefault();
 
-// affiche message d'erreur 
-
-if (erreur){
-  document.getElementById('erreur').innerHTML = erreur;
-  return false;
-
-// formulaire validé 
- 
-} else {
-  alert('formulaire envoyer');
-}
-
+  validateInputs();
 });
-//submit.forEach((input) => input.addEventListener("submit", validator));
+
+const setErreur = (element, message) => {
+  const inputControl = element.parentElement;
+  const erreurDisplay = inputControl.querySelector('.erreur');
+
+  erreurDisplay.innerText = message;
+  inputControl.classList.add('erreur');
+  inputControl.classList.remove('success');
+}
+const setSuccess = element => {
+  const inputControl = element.parentElement;
+  const erreurDisplay = inputControl.querySelector('.erreur');
+  erreurDisplay.innerText = '';
+  inputControl.classList.add('success');
+  inputControl.classList.remove('erreur');
+};
+
+
+const isValidEmail = email => {
+  const re = /^[a-zA-Z0-9._-]{1,64}@([a-zA-Z0-9-]{2,252}\.[a-zA-Z.]{2,6}){5,255}$/;
+  return re.test(String(email).toLowerCase());
+}
+
+const validateInputs = () => {
+  const prenomValue = prenom.value.trim();
+  const nomValue = nom.value.trim();
+  const emailValue = email.value.trim();
+  const birthdateValue = birthdate.value.trim();
+  const quantityValue = quantity.value.trim();
+ // const locationsValue = locations.value.trim();
+  const conditionUValue = conditionU.value.trim();
+
+  if(!prenomValue){
+    setErreur(prenom, "Le champ Prénom a un minimum de 2 caractères")
+  }else{
+    setSuccess(prenom);
+  }
+  if(!nomValue){
+    setErreur(nom, "Le champ du nom de famille a un minimum de 2 caractères")
+  }else{
+    setSuccess(nom);
+  }
+
+    if(emailValue ===''){
+      setErreur(email, "renseigner votre adresse");
+    }else if (!isValidEmail(emailValue)){
+      setErreur(email,"L'adresse électronique n'est pas valide.")
+    }else{
+      setSuccess(email);
+    }
+}
+
+
+
 

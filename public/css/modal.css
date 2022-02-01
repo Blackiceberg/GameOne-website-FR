@@ -538,4 +538,11 @@ footer {
   color: #FF4E60;
 }
 
-border: 2px solid #FF4E60;
+/*erreur formulair*/
+.formData.sucess input {
+  border: none;
+}
+
+.formData.erreur input {
+  border: 2px solid #FF4E60;
+}
