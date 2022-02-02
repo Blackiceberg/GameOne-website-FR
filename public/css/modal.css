@@ -110,7 +110,6 @@ main {
   padding-right: 2vw;
   margin: 1px 20px 15px;
   border-radius: 2rem;
-  text-align: justify;
 
 
 }
@@ -190,7 +189,7 @@ main {
 
 label {
   font-family: var(--font-default);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: normal;
   display: inline-block;
   margin-bottom: 11px;
@@ -326,12 +325,13 @@ input[data-error]::after {
   background: #fe142f;
   display: block;
   margin: 0 auto;
-  border-radius: 7px;
-  font-size: 1rem;
-  padding: 12px 82px;
+  border-radius: 8px;
+  padding: 8px 56px;
   color: #fff;
   cursor: pointer;
   border: 0;
+  font-size: 14px;
+  font-family: 'DM Sans';
 }
 /* custom select styles */
 .custom-select {
@@ -402,10 +402,9 @@ input[data-error]::after {
 /* custom select end */
 .text-label {
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
 }
 .hero-section {
-  min-height: 93vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -530,12 +529,13 @@ footer {
 }
 
 /* launch modal event */
-.formData #erreur {
+.formData.erreur small {
   font-family: roboto;
   font-weight: 400;
   font-size: 10px;
   line-height: 14.25px;
   color: #FF4E60;
+  text-align: left!important;
 }
 
 /*erreur formulair*/
@@ -546,3 +546,4 @@ footer {
 .formData.erreur input {
   border: 2px solid #FF4E60;
 }
+

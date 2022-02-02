@@ -35,9 +35,11 @@ const nom = document.querySelector('#nom');
 const email = document.querySelector('#email');
 const birthdate = document.querySelector('#birthdate');
 const quantity = document.querySelector('#quantity');
-const locations = document.querySelector('#location');
 const conditionU = document.querySelector('#conditionU');
+//const locations= document.forms["form]['location'];
 
+// DOM Elements formulaire : location
+const locations = document.querySelector('#locations');
 
 
 form.addEventListener('submit', e => {
@@ -64,8 +66,8 @@ const setSuccess = element => {
 
 
 const isValidEmail = email => {
-  const re = /^[a-zA-Z0-9._-]{1,64}@([a-zA-Z0-9-]{2,252}\.[a-zA-Z.]{2,6}){5,255}$/;
-  return re.test(String(email).toLowerCase());
+  const regex = /\S+@\S+\.\S+/
+  return regex.test(String(email).toLowerCase());
 }
 
 const validateInputs = () => {
@@ -73,9 +75,14 @@ const validateInputs = () => {
   const nomValue = nom.value.trim();
   const emailValue = email.value.trim();
   const birthdateValue = birthdate.value.trim();
-  const quantityValue = quantity.value.trim();
  // const locationsValue = locations.value.trim();
-  const conditionUValue = conditionU.value.trim();
+  const conditionUValue = conditionU.checked;
+
+  /*if (location.checked==false){
+    setErreur(locations, "Vous devez choisir une option.")
+  }else{
+    setSuccess(locations);    
+  }*/
 
   if(!prenomValue){
     setErreur(prenom, "Le champ Prénom a un minimum de 2 caractères")
@@ -83,20 +90,33 @@ const validateInputs = () => {
     setSuccess(prenom);
   }
   if(!nomValue){
-    setErreur(nom, "Le champ du nom de famille a un minimum de 2 caractères")
+    setErreur(nom, "Veuillez entrer 2 caractères ou plus pour le champ du nom."    )
   }else{
     setSuccess(nom);
   }
 
-    if(emailValue ===''){
-      setErreur(email, "renseigner votre adresse");
-    }else if (!isValidEmail(emailValue)){
-      setErreur(email,"L'adresse électronique n'est pas valide.")
-    }else{
-      setSuccess(email);
-    }
-}
+  if(emailValue ===''){
+    setErreur(email, "renseigner votre adresse");
+  }else if (!isValidEmail(emailValue)){
+    setErreur(email,"L'adresse électronique n'est pas valide.")
+  }else{
+    setSuccess(email);
+  }
 
+  if (!birthdateValue){
+    setErreur(birthdate, "Vous devez entrer votre date de naissance.")
+  }else{
+    setSuccess(birthdate);
+     
+  }
+
+  if (conditionUValue == false){
+    setErreur(conditionU, "Vous devez vérifier que vous acceptez les termes et conditions.")
+  }else{
+    setSuccess(conditionU);
+     
+  }
+}
 
 
 
