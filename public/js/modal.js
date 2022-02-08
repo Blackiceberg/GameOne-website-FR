@@ -39,9 +39,10 @@ const conditionU = document.querySelector('#conditionU');
 const locations = document.querySelectorAll('[name="location"]:checked');
 
 //Regex
-const regexNomPrenom = /^[A-Za-z-]{2,}$/;
+const regexNomPrenom = /^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]{2,}$/;
 const regexEmail = /\S+@\S+\.\S+/;
-const regexQuantity = /^0?([1-9][0-9]){1,}$/;
+const regexQuantity = /^[1-9]?[0-9]{1,2}$/;
+
 
 
 // Messages d'erreurs
@@ -50,7 +51,7 @@ const ErreurNom = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
 const ErreurEmail = "L'adresse électronique n'est pas valide.";
 const ErreurBirthdate = "Vous devez entrer votre date de naissance.";
 const ErreurQuantity ="Vous devez entrer votre nombre de participation.";
-const ErreurLocations ="Vous devez choisir une option.";
+const ErreurLocations ="Vous devez choisir une ville.";
 const ErreurConditionU = "Vous devez vérifier que vous acceptez les termes et conditions.";
 
 
@@ -88,26 +89,21 @@ const isValidEmail = email => {
 }
 
 const isValidQuantity = quantity => {
-  return regexQuantity.test(Number(quantity).toLowerCase());
+  return regexQuantity.test(String(quantity).toLowerCase());
 }
-
-
 
 const validateInputs = () => {
   const prenomValue = prenom.value.trim();
   const nomValue = nom.value.trim();
   const emailValue = email.value.trim();
   const birthdateValue = birthdate.value.trim();
-  //const locationsValue = location.checked;
+  const locationsValue = locations.value;
   const conditionUValue = conditionU.checked;
+  const quantityValue = quantity.value.trim();
+  
+  
 
-  /*if (locationsValue==false){
-    setErreur(locations,ErreurLocations)
-  }else{
-    setSuccess(locations);    
-  }*/
-
-  if(!isValidPrenom(prenomValue)){
+  if(!isValidPrenom (prenomValue)){
     setErreur(prenom, ErreurPrenom)
   }else{
     setSuccess(prenom);
@@ -127,17 +123,21 @@ const validateInputs = () => {
   }else{
     setSuccess(birthdate);
   }
-  if (!isValidQuantity(quantity)){
+  if (!isValidQuantity(quantityValue)){
     setErreur(quantity, ErreurQuantity)
   }else{
     setSuccess(quantity);
-     
   }
+
   if (conditionUValue == false){
     setErreur(conditionU, ErreurConditionU)
   }else{
-    setSuccess(conditionU);
-     
+    setSuccess(conditionU);   
+  }
+  if (locationsValue == false){
+    setErreur(locations,ErreurLocations)
+  }else{
+    setSuccess(locations);    
   }
 }
 
