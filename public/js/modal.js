@@ -36,7 +36,7 @@ const email = document.querySelector('#email');
 const birthdate = document.querySelector('#birthdate');
 const quantity = document.querySelector('#quantity');
 const conditionU = document.querySelector('#conditionU');
-const locations = document.querySelectorAll('[name="location"]:checked');
+//const locations = document.querySelectorAll('[name="location"]:checked');
 
 //Regex
 const regexNomPrenom = /^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]{2,}$/;
@@ -51,7 +51,7 @@ const ErreurNom = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
 const ErreurEmail = "L'adresse électronique n'est pas valide.";
 const ErreurBirthdate = "Vous devez entrer votre date de naissance.";
 const ErreurQuantity ="Vous devez entrer votre nombre de participation.";
-const ErreurLocations ="Vous devez choisir une ville.";
+//const ErreurLocations ="Vous devez choisir une ville.";
 const ErreurConditionU = "Vous devez vérifier que vous acceptez les termes et conditions.";
 
 
@@ -59,7 +59,8 @@ form.addEventListener('submit', e => {
   e.preventDefault();
 
   validateInputs();
-});
+}
+);
 
 const setErreur = (element, message) => {
   const inputControl = element.parentElement;
@@ -76,7 +77,6 @@ const setSuccess = element => {
   inputControl.classList.add('success');
   inputControl.classList.remove('erreur');
 };
-
 
 const isValidPrenom = prenom =>{
   return regexNomPrenom.test(String(prenom).toLowerCase());
@@ -97,12 +97,10 @@ const validateInputs = () => {
   const nomValue = nom.value.trim();
   const emailValue = email.value.trim();
   const birthdateValue = birthdate.value.trim();
-  const locationsValue = locations.value;
+  //const locationsValue = locations.length;
   const conditionUValue = conditionU.checked;
   const quantityValue = quantity.value.trim();
   
-  
-
   if(!isValidPrenom (prenomValue)){
     setErreur(prenom, ErreurPrenom)
   }else{
@@ -132,14 +130,14 @@ const validateInputs = () => {
   if (conditionUValue == false){
     setErreur(conditionU, ErreurConditionU)
   }else{
-    setSuccess(conditionU);   
+    setSuccess(conditionU);  
   }
-  if (locationsValue == false){
+ /* if (!locationsValue){
     setErreur(locations,ErreurLocations)
   }else{
     setSuccess(locations);    
-  }
+  }*/
+
 }
-
-
-
+//form.innerText = "Merci pour votre inscription";
+//form.classList.add('register');

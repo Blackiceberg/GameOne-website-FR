@@ -186,6 +186,7 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  min-height: 700px;
 }
 
 label {
@@ -219,6 +220,11 @@ input {
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
+}
+.register{
+  margin: 50% auto;
+  text-align: center;
+  font-size: 36px;
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;
@@ -549,3 +555,6 @@ footer {
   border: 2px solid #FF4E60;
 }
 
+.clean{
+  opacity: 0;
+}
