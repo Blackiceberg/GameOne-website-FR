@@ -36,12 +36,21 @@ const email = document.querySelector('#email');
 const birthdate = document.querySelector('#birthdate');
 const quantity = document.querySelector('#quantity');
 const conditionU = document.querySelector('#conditionU');
-//const locations = document.querySelectorAll('[name="location"]:checked');
+//const location = document.querySelectorAll('[name="location"]:checked');
+const locations = document.querySelector("#locations");
+const location1 = document.querySelector("#newYork");
+const location2 = document.querySelector("#sanFrancisco");
+const location3 = document.querySelector("#seattle");
+const location4 = document.querySelector("#chicago");
+const location5 = document.querySelector("#boston");
+const location6 = document.querySelector("#portland");
+
+
 
 //Regex
 const regexNomPrenom = /^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]{2,}$/;
 const regexEmail = /\S+@\S+\.\S+/;
-const regexQuantity = /^[1-9]?[0-9]{1,2}$/;
+const regexQuantity = /^[1-9]?[0-9]{1,1}$/;
 
 
 
@@ -51,17 +60,17 @@ const ErreurNom = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
 const ErreurEmail = "L'adresse électronique n'est pas valide.";
 const ErreurBirthdate = "Vous devez entrer votre date de naissance.";
 const ErreurQuantity ="Vous devez entrer votre nombre de participation.";
-//const ErreurLocations ="Vous devez choisir une ville.";
+const ErreurLocations ="Vous devez choisir une ville.";
 const ErreurConditionU = "Vous devez vérifier que vous acceptez les termes et conditions.";
 
 
 form.addEventListener('submit', e => {
+  console.log(e);
   e.preventDefault();
 
-  validateInputs();
+  validateInputs(e);
 }
 );
-
 const setErreur = (element, message) => {
   const inputControl = element.parentElement;
   const erreurDisplay = inputControl.querySelector('.erreur');
@@ -92,12 +101,15 @@ const isValidQuantity = quantity => {
   return regexQuantity.test(String(quantity).toLowerCase());
 }
 
-const validateInputs = () => {
+const validateInputs = (/*formData*/) => {
+  //console.log('formData',formData);
+  //console.log('formData',formData.target[5].checked);
+  //return;
   const prenomValue = prenom.value.trim();
   const nomValue = nom.value.trim();
   const emailValue = email.value.trim();
   const birthdateValue = birthdate.value.trim();
-  //const locationsValue = locations.length;
+  //const locationsValue = location.length;
   const conditionUValue = conditionU.checked;
   const quantityValue = quantity.value.trim();
   
@@ -132,12 +144,39 @@ const validateInputs = () => {
   }else{
     setSuccess(conditionU);  
   }
- /* if (!locationsValue){
-    setErreur(locations,ErreurLocations)
+
+  if (document.querySelectorAll('[name="location"]:checked').length < 1) {
+  setErreur(locations, ErreurLocations)
   }else{
-    setSuccess(locations);    
-  }*/
+    setSuccess(locations);  
+  }
+  return isFormValid;
+  
+}
+
+
+/*let location1Input = location1.checked;
+let location2Input = location2.checked;
+let location3Input = location3.checked;
+let location4Input = location4.checked;
+let location5Input = location5.checked;
+let location6Input = location6.checked;
+let locatTab = [location1Input,location2Input, location3Input, location4Input, location5Input,location6Input];
+
+for (const element of locatTab) {
+  console.log('element: ',element );
+  console.log(locatTab)
+}*/
+
+/*if (
+  location1Input == false &&
+  location2Input == false
+  ){
+    setErreur(locationsValue, ErreurLocations)
+  }else{
+    setSuccess(locations);  
+  }
 
 }
 //form.innerText = "Merci pour votre inscription";
-//form.classList.add('register');
+//form.classList.add('register');*/
