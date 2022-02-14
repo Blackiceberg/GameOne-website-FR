@@ -36,15 +36,7 @@ const email = document.querySelector('#email');
 const birthdate = document.querySelector('#birthdate');
 const quantity = document.querySelector('#quantity');
 const conditionU = document.querySelector('#conditionU');
-//const location = document.querySelectorAll('[name="location"]:checked');
 const locations = document.querySelector("#locations");
-const location1 = document.querySelector("#newYork");
-const location2 = document.querySelector("#sanFrancisco");
-const location3 = document.querySelector("#seattle");
-const location4 = document.querySelector("#chicago");
-const location5 = document.querySelector("#boston");
-const location6 = document.querySelector("#portland");
-
 
 
 //Regex
@@ -65,10 +57,9 @@ const ErreurConditionU = "Vous devez vérifier que vous acceptez les termes et c
 
 
 form.addEventListener('submit', e => {
-  console.log(e);
   e.preventDefault();
-
   validateInputs(e);
+
 }
 );
 const setErreur = (element, message) => {
@@ -101,18 +92,16 @@ const isValidQuantity = quantity => {
   return regexQuantity.test(String(quantity).toLowerCase());
 }
 
-const validateInputs = (/*formData*/) => {
-  //console.log('formData',formData);
-  //console.log('formData',formData.target[5].checked);
-  //return;
+const validateInputs = () => {
+  
+
   const prenomValue = prenom.value.trim();
   const nomValue = nom.value.trim();
   const emailValue = email.value.trim();
   const birthdateValue = birthdate.value.trim();
-  //const locationsValue = location.length;
   const conditionUValue = conditionU.checked;
   const quantityValue = quantity.value.trim();
-  
+
   if(!isValidPrenom (prenomValue)){
     setErreur(prenom, ErreurPrenom)
   }else{
@@ -142,41 +131,22 @@ const validateInputs = (/*formData*/) => {
   if (conditionUValue == false){
     setErreur(conditionU, ErreurConditionU)
   }else{
-    setSuccess(conditionU);  
+    setSuccess(conditionU); 
   }
 
   if (document.querySelectorAll('[name="location"]:checked').length < 1) {
   setErreur(locations, ErreurLocations)
   }else{
     setSuccess(locations);  
-  }
-  return isFormValid;
-  
-}
-
-
-/*let location1Input = location1.checked;
-let location2Input = location2.checked;
-let location3Input = location3.checked;
-let location4Input = location4.checked;
-let location5Input = location5.checked;
-let location6Input = location6.checked;
-let locatTab = [location1Input,location2Input, location3Input, location4Input, location5Input,location6Input];
-
-for (const element of locatTab) {
-  console.log('element: ',element );
-  console.log(locatTab)
-}*/
-
-/*if (
-  location1Input == false &&
-  location2Input == false
-  ){
-    setErreur(locationsValue, ErreurLocations)
-  }else{
-    setSuccess(locations);  
+  } 
+    
+  if
+  (document.querySelectorAll('.success').length >= 7){
+    closeModal();
+    launchModal();
+    form.innerText = "Merci pour votre inscription";
+    form.classList.add('register');
   }
 
 }
-//form.innerText = "Merci pour votre inscription";
-//form.classList.add('register');*/
+
