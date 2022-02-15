@@ -55,21 +55,27 @@ const ErreurQuantity ="Vous devez entrer votre nombre de participation.";
 const ErreurLocations ="Vous devez choisir une ville.";
 const ErreurConditionU = "Vous devez vérifier que vous acceptez les termes et conditions.";
 
-
+// écouteur btn submit lance la vérification des champs
 form.addEventListener('submit', e => {
   e.preventDefault();
-  validateInputs(e);
+  validateInputs();
 
 }
 );
+// Fonction Messages d'erreurs 
+//(récupère la .erreur de l'element parent, pour y afficher le message contextuel)
 const setErreur = (element, message) => {
   const inputControl = element.parentElement;
   const erreurDisplay = inputControl.querySelector('.erreur');
 
+// Fonction messages d'erreurs 
+//(ajoute ou supprime .success, .erreur)
   erreurDisplay.innerText = message;
   inputControl.classList.add('erreur');
   inputControl.classList.remove('success');
 }
+// Fonction comportement valide 
+//(ajoute ou supprime .success, .erreur)
 const setSuccess = element => {
   const inputControl = element.parentElement;
   const erreurDisplay = inputControl.querySelector('.erreur');
@@ -78,6 +84,8 @@ const setSuccess = element => {
   inputControl.classList.remove('erreur');
 };
 
+// combinaison des constantInput et des regex 
+//(vérifications des contenue des input)
 const isValidPrenom = prenom =>{
   return regexNomPrenom.test(String(prenom).toLowerCase());
 }
@@ -92,9 +100,8 @@ const isValidQuantity = quantity => {
   return regexQuantity.test(String(quantity).toLowerCase());
 }
 
+// Fonction de vérification des Inputs 
 const validateInputs = () => {
-  
-
   const prenomValue = prenom.value.trim();
   const nomValue = nom.value.trim();
   const emailValue = email.value.trim();
@@ -133,15 +140,18 @@ const validateInputs = () => {
   }else{
     setSuccess(conditionU); 
   }
+ // vérifie si au moins 1 boutton radio est séléctioné.
 
   if (document.querySelectorAll('[name="location"]:checked').length < 1) {
   setErreur(locations, ErreurLocations)
   }else{
     setSuccess(locations);  
   } 
-    
+  // vérifie si 7 de mes class success sont actives.
   if
   (document.querySelectorAll('.success').length >= 7){
+
+  // fermé la modal, la relancé et y afficher un nouveau message.
     closeModal();
     launchModal();
     form.innerText = "Merci pour votre inscription";
