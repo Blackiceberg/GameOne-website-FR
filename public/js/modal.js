@@ -62,18 +62,15 @@ form.addEventListener('submit', e => {
 }
 );
 // Fonction Messages d'erreurs 
-//(récupère la .erreur de l'element parent, pour y afficher le message contextuel)
 const setErreur = (element, message) => {
   const inputControl = element.parentElement;
   const erreurDisplay = inputControl.querySelector('.erreur');
 // Fonction messages d'erreurs 
-//(ajoute ou supprime .success, .erreur)
   erreurDisplay.innerText = message;
   inputControl.classList.add('erreur');
   inputControl.classList.remove('success');
 }
 // Fonction comportement valide 
-//(ajoute ou supprime .success, .erreur)
 const setSuccess = element => {
   const inputControl = element.parentElement;
   const erreurDisplay = inputControl.querySelector('.erreur');
@@ -82,7 +79,6 @@ const setSuccess = element => {
   inputControl.classList.remove('erreur');
 };
 // combinaison des constantInput et des regex 
-//(vérifications des contenue des input)
 const isValidPrenom = prenom =>{
   return regexNomPrenom.test(String(prenom).toLowerCase());
 }
