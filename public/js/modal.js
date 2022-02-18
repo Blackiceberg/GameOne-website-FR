@@ -12,9 +12,14 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalClose = document.querySelectorAll(".close");
+const fistForm = document.querySelector("#form")
+const modalregister = document.querySelector(".register");
+
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 modalClose.forEach((btn) => btn.addEventListener("click", closeModal));
+
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
@@ -23,6 +28,12 @@ function launchModal() {
 function closeModal() {
   modalbg.style.display = "none";
 }
+
+function launchModalRegister(){
+  fistForm.style.display = "none";
+  modalregister.style.display = "block";
+}
+
 // DOM Elements formulaire
 const form = document.querySelector('#form');
 const prenom = document.querySelector('#prenom');
@@ -134,10 +145,20 @@ const validateInputs = () => {
   if
   (document.querySelectorAll('.success').length >= 7){
   // fermé la modal, la relancé et y afficher un nouveau message.
-    closeModal();
-    launchModal();
-    form.innerText = "Merci pour votre inscription";
-    form.classList.add('register');
-  }
+    launchModalRegister();
+    const btnCleaner = document.querySelector('.fermer');
+    btnCleaner.addEventListener("click", cleanModal);
+    console.log(btnCleaner);
+
+
+}
+
+function cleanModal() {
+     form.value = null;
+     form.innerHTML = form;
+     console.log(form)
+}
+
+
 }
 

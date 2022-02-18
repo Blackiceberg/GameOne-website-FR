@@ -229,8 +229,11 @@ input {
   transition: 0.3s;
 }
 .register{
+  display: none;
   margin: 50% auto;
   text-align: center;
+}
+.register p{
   font-size: 36px;
 }
 .formData[data-error-visible="true"]::after {
