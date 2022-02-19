@@ -230,11 +230,15 @@ input {
 }
 .register{
   display: none;
-  margin: 50% auto;
+  margin: 50% auto 0;
   text-align: center;
 }
 .register p{
   font-size: 36px;
+}
+
+input.fermer{
+  margin-top: 23em;
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;

@@ -28,7 +28,7 @@ function launchModal() {
 function closeModal() {
   modalbg.style.display = "none";
 }
-
+// close eventForm and open modal validationForm 
 function launchModalRegister(){
   fistForm.style.display = "none";
   modalregister.style.display = "block";
@@ -148,9 +148,8 @@ const validateInputs = () => {
 
 
 }
-
+//Reset form
 function cleanModal() {
-     form.value = null;
      form.innerHTML = form;
      console.log(form)
 }
