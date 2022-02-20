@@ -11,7 +11,7 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const modalClose = document.querySelectorAll(".close");
+const modalClose = document.querySelectorAll(".cross");
 const fistForm = document.querySelector("#form")
 const modalregister = document.querySelector(".register");
 
@@ -144,14 +144,12 @@ const validateInputs = () => {
     launchModalRegister();
     const btnCleaner = document.querySelector('.fermer');
     btnCleaner.addEventListener("click", cleanModal);
-    console.log(btnCleaner);
 
 
 }
 //Reset form
 function cleanModal() {
-     form.innerHTML = form;
-     console.log(form)
+     form.submit();
 }
 
 
